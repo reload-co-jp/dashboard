@@ -1,94 +1,96 @@
-# Next.js Static Site Template
+# ReLoad Analytics
 
-Next.js 16 + React 19 + TypeScript を使用した静的サイト生成のテンプレートリポジトリです。GitHub Pages へのデプロイが自動化されています。
+ReLoad 運営サイトのアクセス・SEO・収益を横断で確認する静的ダッシュボード。
+Next.js Static Export で GitHub Pages に配信する。ブラウザから Google API は呼ばない。
 
-## 技術スタック
+## 画面
 
-- **Next.js** 16 - App Router / Static Export
-- **React** 19
-- **TypeScript** 5
-- **ESLint** 9 - Flat Config
-- **Prettier** 3
+| パス            | 内容                                                                                |
+| --------------- | ----------------------------------------------------------------------------------- |
+| `/`             | 全サイト KPI・トラフィック推移・サイト別ランキング・伸びている / 注意が必要なサイト |
+| `/sites/[site]` | サイト別 KPI・指標推移・期間比較・SEO 流入・人気記事                                |
+| `/seo`          | Search Console KPI・SEO Opportunity・サイト別 / キーワード別ランキング              |
+| `/articles`     | 記事ランキング（PV / 急上昇 / 下落 / Organic）                                      |
 
-## このテンプレートの使い方
+期間（7 / 30 / 90 日）はヘッダーで切り替え、常に直前の同じ長さの期間と比較する。
 
-1. **「Use this template」ボタン**をクリックして新しいリポジトリを作成
-2. リポジトリをクローン
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   cd YOUR_REPO
-   ```
-3. 依存関係をインストール
-   ```bash
-   pnpm install
-   ```
-4. 開発サーバーを起動
-   ```bash
-   pnpm dev
-   ```
+## データ
 
-## セットアップ後にやること
+UI はビルド時に `data/*.json` を読むだけ。
 
-### 1. `next.config.js` の修正
+| ファイル        | 取得元         | 内容                                                         |
+| --------------- | -------------- | ------------------------------------------------------------ |
+| `sites.json`    | 手動           | サイト一覧と API 設定                                        |
+| `traffic.json`  | GA4            | サイト別日次 PV / Users / Sessions / Organic Users（180 日） |
+| `articles.json` | GA4            | 記事別の期間集計（今期間 / 前期間）                          |
+| `seo.json`      | Search Console | サイト別・キーワード別の期間集計                             |
+| `revenue.json`  | AdSense        | サイト別日次収益（JPY）                                      |
 
-`basePath` をリポジトリ名に変更してください：
+初期状態はダミーデータ。
 
-```js
-basePath: process.env.NODE_ENV === "production" ? "/YOUR_REPO_NAME" : "",
-```
+### サイト追加
 
-### 2. `app/layout.tsx` の修正
+`data/sites.json` に追記するだけ（コード変更不要）。
 
-メタデータとサイト情報を更新してください：
-
-```tsx
-export const metadata: Metadata = {
-  title: "Your Site Title",
-  description: "Your site description",
+```json
+{
+  "id": "akiba",
+  "name": "Akiba Live",
+  "url": "https://akiba.reload.co.jp/",
+  "ga4": "123456789",
+  "gsc": "sc-domain:akiba.reload.co.jp"
 }
 ```
 
-### 3. GitHub Pages の設定
+- `ga4`: GA4 プロパティ ID（数字）
+- `gsc`: Search Console のプロパティ（ドメインプロパティは `sc-domain:`、URL プレフィックスは `https://.../`）
+- AdSense はアカウント単位で取得し、`url` のホスト名でサイトに振り分ける
 
-1. リポジトリの **Settings** → **Pages** へ移動
-2. **Source** を「GitHub Actions」に設定
+未設定の取得元はスキップされ、既存の JSON がそのまま残る。
 
-## ディレクトリ構成
+### 自動更新（GitHub Actions）
 
+`.github/workflows/update-data.yml` が毎日 06:00 JST に `scripts/fetch-google-data.ts` を実行し、
+`data/` に変更があればコミットしてデプロイする。手動実行は Actions タブの **Run workflow**。
+
+リポジトリの **Settings → Secrets and variables → Actions** に登録：
+
+| Secret                 | 内容                                       |
+| ---------------------- | ------------------------------------------ |
+| `GOOGLE_CLIENT_ID`     | OAuth クライアント ID                      |
+| `GOOGLE_CLIENT_SECRET` | OAuth クライアントシークレット             |
+| `GOOGLE_REFRESH_TOKEN` | 下記スコープを許可したリフレッシュトークン |
+| `ADSENSE_ACCOUNT`      | `accounts/pub-XXXXXXXXXXXXXXXX`（任意）    |
+
+認証は OAuth ユーザー 1 つにまとめている（AdSense API はサービスアカウント非対応のため）。
+
+1. Google Cloud で Google Analytics Data API / Search Console API / AdSense Management API を有効化
+2. OAuth クライアント（ウェブアプリケーション）を作成。リダイレクト URI に `https://developers.google.com/oauthplayground` を追加
+3. OAuth 同意画面は **内部**（Workspace）か **本番** にする。**テスト** のままだとリフレッシュトークンが 7 日で失効する
+4. [OAuth Playground](https://developers.google.com/oauthplayground) の設定で自分のクライアント ID / シークレットを使い、以下のスコープでトークンを発行
+   - `https://www.googleapis.com/auth/analytics.readonly`
+   - `https://www.googleapis.com/auth/webmasters.readonly`
+   - `https://www.googleapis.com/auth/adsense.readonly`
+5. 認可したユーザーが各 GA4 プロパティ・Search Console・AdSense の閲覧権限を持っていること
+
+ローカル実行：
+
+```bash
+GOOGLE_CLIENT_ID=... GOOGLE_CLIENT_SECRET=... GOOGLE_REFRESH_TOKEN=... pnpm fetch-data
 ```
-.
-├── app/
-│   ├── layout.tsx      # ルートレイアウト
-│   ├── page.tsx        # ホームページ
-│   └── reset.css       # CSSリセット
-├── .github/
-│   └── workflows/
-│       ├── lint.yml    # リント自動実行
-│       └── deploy.yml  # GitHub Pages 自動デプロイ
-├── next.config.js      # Next.js 設定
-├── tsconfig.json       # TypeScript 設定
-├── eslint.config.mjs   # ESLint 設定
-└── .prettierrc.json    # Prettier 設定
+
+## 開発
+
+```bash
+pnpm install
+pnpm dev
 ```
 
-## スクリプト
+| コマンド                                     | 説明                         |
+| -------------------------------------------- | ---------------------------- |
+| `pnpm dev`                                   | 開発サーバー                 |
+| `pnpm build`                                 | 静的ビルド（`out/`）         |
+| `pnpm fetch-data`                            | Google API からデータ取得    |
+| `pnpm test` / `pnpm lint` / `pnpm typecheck` | テスト / リント / 型チェック |
 
-| コマンド | 説明 |
-|---------|------|
-| `pnpm dev` | 開発サーバーを起動 |
-| `pnpm build` | 静的サイトをビルド（`/out` に出力） |
-| `pnpm lint` | ESLint を実行 |
-| `pnpm format` | Prettier でコードをフォーマット |
-| `pnpm typecheck` | TypeScript の型チェック |
-
-## 機能
-
-- **静的サイト生成** - `next build` で `/out` に HTML を出力
-- **自動デプロイ** - main ブランチへの push で GitHub Pages に自動デプロイ
-- **自動リント** - push 時に ESLint / Prettier チェックを実行
-- **依存関係の自動更新** - Dependabot による週次チェック
-- **エディタ設定** - VS Code での自動フォーマット設定済み
-
-## ライセンス
-
-ISC
+本番ビルドは `basePath: /dashboard`（`next.config.js`）。GitHub Pages の Source は「GitHub Actions」に設定する。

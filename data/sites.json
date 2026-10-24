@@ -1,0 +1,209 @@
+[
+  {
+    "id": "akiba",
+    "name": "Akiba Live",
+    "url": "https://akiba.reload.co.jp/",
+    "ga4": "534313017",
+    "gsc": "sc-domain:akiba.reload.co.jp"
+  },
+  {
+    "id": "rdish",
+    "name": "RDish",
+    "url": "https://rdish.reload.co.jp/",
+    "ga4": "535461383",
+    "gsc": "sc-domain:rdish.reload.co.jp"
+  },
+  {
+    "id": "vrn",
+    "name": "Vanilla retronym",
+    "url": "https://vrn.reload.co.jp/",
+    "ga4": "555452050",
+    "gsc": "sc-domain:vrn.reload.co.jp"
+  },
+  {
+    "id": "kobore",
+    "name": "Kobore",
+    "url": "https://kobore.reload.co.jp/",
+    "ga4": "557310984",
+    "gsc": "sc-domain:kobore.reload.co.jp"
+  },
+  {
+    "id": "ueno",
+    "name": "Ueno",
+    "url": "https://ueno.reload.co.jp/",
+    "ga4": "551909923",
+    "gsc": "sc-domain:ueno.reload.co.jp"
+  },
+  {
+    "id": "asakusa",
+    "name": "Asakusa",
+    "url": "https://asakusa.reload.co.jp/",
+    "ga4": "552900011",
+    "gsc": "sc-domain:asakusa.reload.co.jp"
+  },
+  {
+    "id": "onqai",
+    "name": "Onqai",
+    "url": "https://onqai.reload.co.jp/",
+    "ga4": "535419877",
+    "gsc": "sc-domain:onqai.reload.co.jp"
+  },
+  {
+    "id": "geinin",
+    "name": "geinin",
+    "url": "https://geinin.reload.co.jp/",
+    "ga4": "559500017",
+    "gsc": "sc-domain:geinin.reload.co.jp"
+  },
+  {
+    "id": "shaqai",
+    "name": "Shaqai",
+    "url": "https://shaqai.reload.co.jp/",
+    "ga4": "531848457",
+    "gsc": "sc-domain:shaqai.reload.co.jp"
+  },
+  {
+    "id": "sozoro",
+    "name": "Sozoroto",
+    "url": "https://sozoroto.reload.co.jp/",
+    "ga4": "538319968",
+    "gsc": "sc-domain:sozoroto.reload.co.jp"
+  },
+  {
+    "id": "sake-eve",
+    "name": "Sake event",
+    "url": "https://sake-eve.reload.co.jp/",
+    "ga4": "558510086",
+    "gsc": "sc-domain:sake-eve.reload.co.jp"
+  },
+  {
+    "id": "relaw",
+    "name": "ReLaw",
+    "url": "https://relaw.reload.co.jp/",
+    "ga4": "544653225",
+    "gsc": "sc-domain:relaw.reload.co.jp"
+  },
+  {
+    "id": "juqa",
+    "name": "JuQa",
+    "url": "https://juqa.reload.co.jp/",
+    "ga4": "531056513",
+    "gsc": "sc-domain:juqa.reload.co.jp"
+  },
+  {
+    "id": "yama100",
+    "name": "Yama100",
+    "url": "https://yama100.reload.co.jp/",
+    "ga4": "532528983",
+    "gsc": "sc-domain:yama100.reload.co.jp"
+  },
+  {
+    "id": "demagase",
+    "name": "DemaGase",
+    "url": "https://demagase.reload.co.jp/",
+    "ga4": "534286640",
+    "gsc": "sc-domain:demagase.reload.co.jp"
+  },
+  {
+    "id": "vps",
+    "name": "VPS survey",
+    "url": "https://vps.reload.co.jp/",
+    "ga4": "534286742",
+    "gsc": "sc-domain:vps.reload.co.jp"
+  },
+  {
+    "id": "re-pseudo",
+    "name": "RePseudo",
+    "url": "https://re-pseudo.reload.co.jp/",
+    "ga4": "534287794",
+    "gsc": "sc-domain:re-pseudo.reload.co.jp"
+  },
+  {
+    "id": "happy-check",
+    "name": "Happy check",
+    "url": "https://happy-check.reload.co.jp/",
+    "ga4": "534295953",
+    "gsc": "sc-domain:happy-check.reload.co.jp"
+  },
+  {
+    "id": "r-subsidy",
+    "name": "RSubsidy",
+    "url": "https://r-subsidy.reload.co.jp/",
+    "ga4": "534303732",
+    "gsc": "sc-domain:r-subsidy.reload.co.jp"
+  },
+  {
+    "id": "religion-catalog",
+    "name": "Religion catalog",
+    "url": "https://religion-catalog.reload.co.jp/",
+    "ga4": "534359101",
+    "gsc": "sc-domain:religion-catalog.reload.co.jp"
+  },
+  {
+    "id": "lawyer-quest",
+    "name": "Lawyer Quest",
+    "url": "https://lawyer-quest.reload.co.jp/",
+    "ga4": "541649982",
+    "gsc": "sc-domain:lawyer-quest.reload.co.jp"
+  },
+  {
+    "id": "restring",
+    "name": "restring",
+    "url": "https://restring.reload.co.jp/",
+    "ga4": "543741815",
+    "gsc": "sc-domain:restring.reload.co.jp"
+  },
+  {
+    "id": "rra",
+    "name": "Re Reference AI",
+    "url": "https://rra.reload.co.jp/",
+    "ga4": "544180551",
+    "gsc": "sc-domain:rra.reload.co.jp"
+  },
+  {
+    "id": "rbrd",
+    "name": "ReBrew & ReDistill",
+    "url": "https://rbrd.reload.co.jp/",
+    "ga4": "557314410",
+    "gsc": "sc-domain:rbrd.reload.co.jp"
+  },
+  {
+    "id": "reculture",
+    "name": "Reculture",
+    "url": "https://reculture.reload.co.jp/",
+    "ga4": "558508540",
+    "gsc": "sc-domain:reculture.reload.co.jp"
+  },
+  {
+    "id": "narragram",
+    "name": "narragram",
+    "url": "https://narragram.reload.co.jp/",
+    "ga4": "559476659",
+    "gsc": "sc-domain:narragram.reload.co.jp"
+  },
+  {
+    "id": "nigirythm",
+    "name": "Nigirythm",
+    "url": "https://nigirythm.reload.co.jp/",
+    "ga4": "559477230",
+    "gsc": "sc-domain:nigirythm.reload.co.jp"
+  },
+  {
+    "id": "hrn",
+    "name": "hrn",
+    "url": "https://hrn.reload.co.jp/",
+    "gsc": "sc-domain:hrn.reload.co.jp"
+  },
+  {
+    "id": "syllabler",
+    "name": "syllabler",
+    "url": "https://syllabler.reload.co.jp/",
+    "gsc": "sc-domain:syllabler.reload.co.jp"
+  },
+  {
+    "id": "tsa",
+    "name": "tsa",
+    "url": "https://tsa.reload.co.jp/",
+    "gsc": "sc-domain:tsa.reload.co.jp"
+  }
+]

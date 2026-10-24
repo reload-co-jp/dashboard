@@ -5,6 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # Called by update-data.yml after it commits fresh data
+  workflow_call:
 
 permissions:
   contents: read
@@ -21,6 +23,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Branch tip, not the triggering SHA, so data committed by update-data.yml is included
+          ref: ${{ github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
