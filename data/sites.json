@@ -205,5 +205,11 @@
     "name": "tsa",
     "url": "https://tsa.reload.co.jp/",
     "gsc": "sc-domain:tsa.reload.co.jp"
+  },
+  {
+    "id": "bo",
+    "name": "Black october",
+    "url": "https://bo.reload.co.jp/",
+    "gsc": "sc-domain:bo.reload.co.jp"
   }
 ]
